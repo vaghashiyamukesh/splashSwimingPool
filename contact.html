@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Swimming Pool - Kids Swimming Classes</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body id="contact" onload="disableButton(true)">
+    <div id="container">
+        <header>
+            <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                <a href="index.html">
+                    <img src="images/Logo.png" alt="Splash Swimming Pool Logo" id="logo">
+                </a>
+                </div>
+                <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="contact-hero">
+            <div class="container">
+                <h1>Get in Touch with Splash!</h1>
+                <p>We’d love to hear from you — whether you have questions about our swimming classes, facilities, or want to share feedback.</p>
+            </div>
+            </section>
+
+            <section class="contact-info">
+            <div class="container">
+                <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>(123) 456-7890</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@splashswimming.com</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>123 Waterpark Ave, Sunnyville, CA</p>
+                </div>
+                </div>
+            </div>
+            </section>
+
+            <section class="contact-form-section">
+            <div class="container">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form" action="/contact" method="post">
+                <fieldset>
+                    <legend>Contact Form</legend>
+
+                    <div class="textbox">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="xxx-xxx-xxxx" required>
+                    </div>
+
+                    <div class="radios">
+                    <label>How should we contact you?</label>
+                    <input type="radio" name="contact_method" value="email" checked> Email
+                    <input type="radio" name="contact_method" value="phone"> Phone
+                    </div>
+
+                    <div class="commentbox">
+                    <label for="feedback">Your Message or Feedback:</label>
+                    <textarea id="feedback" name="feedback" placeholder="Type your message here..." required></textarea>
+                    </div>
+
+                    <!-- Verification Code -->
+                    <div class="randomcode">
+                    <label for="randomcodeInput">Enter the verification code:</label>
+                    <input type="text" id="randomcodeInput" placeholder="Enter characters">
+                    <div class="code-container">
+                        <p id="codes"></p>
+                        <button type="button" class="refresh-code" onclick="refreshCode()">🔄</button>
+                    </div>
+                    <div class="validation-message" id="validationMessage"></div>
+                    </div>
+
+                    <div class="button">
+                    <input type="submit" id="submit" value="Send Message">
+                    </div>
+                </fieldset>
+                </form>
+            </div>
+            </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Us?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Safe Environment</h3>
+                        <p>Certified instructors and safe swimming facilities</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Expert Training</h3>
+                        <p>Personalized lessons for all skill levels</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-child"></i>
+                        <h3>Kid-Friendly</h3>
+                        <p>Fun and engaging classes for children</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+
+
+        <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@splashswimming.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Splash Swimming Pool. All rights reserved.</p>
+            </div>
+        </div>
+        </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery throttle/debounce plugin for better performance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/contact-scripts.js"></script>
+    </div> 
+</body>
