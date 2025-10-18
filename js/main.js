@@ -97,3 +97,57 @@ $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     }
 });
+
+
+// ===== Auto-generate Gallery Images =====
+document.addEventListener("DOMContentLoaded", function () {
+  const galleryTrack = document.getElementById("gallery-track");
+
+  // All your image filenames
+  const galleryImages = [
+    "swimming-girl1.jpg",
+    "swimming1.jpg",
+    "swimming2.jpg",
+    "swimming3.jpg",
+    "swimming4.jpg",
+    "swimmingKid1.jpg",
+    "swimmingKid2.jpg",
+    "swimmingKid3.jpg",
+    "swimmingKid4.jpg",
+    "swimmingKid5.jpg",
+    "swimmingKid6.jpg"
+  ];
+
+  // Generate <img> tags dynamically
+  const imageTags = galleryImages
+    .map((file) => `<img src="images/${file}" alt="${file.split('.')[0]}">`)
+    .join("");
+
+  galleryTrack.innerHTML = imageTags + imageTags; // duplicate for continuous loop
+});
+
+// Simple auto slider for featured classes
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+
+function showSlide(index) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+    showSlide(slideIndex);
+}
+
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    setInterval(nextSlide, 5000); // auto change every 5s
+}

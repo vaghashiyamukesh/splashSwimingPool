@@ -683,3 +683,258 @@ textarea {
     padding: 1.2rem 0.5rem;
   }
 }
+
+/* ================================
+   HOME PAGE EXTENSIONS
+=================================== */
+
+/* Featured Classes Slider */
+.featured-classes {
+  padding: 4rem 1rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.featured-classes h2 {
+  color: #00a8e8;
+  margin-bottom: 2rem;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 168, 232, 0.2);
+}
+
+.slide {
+  display: none;
+  position: relative;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 168, 232, 0.7);
+  color: white;
+  padding: 1rem;
+  border-radius: 0 0 10px 10px;
+}
+
+.slider-controls {
+  margin-top: 1rem;
+}
+
+.slider-controls span {
+  cursor: pointer;
+  font-size: 2rem;
+  color: #00a8e8;
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+
+.slider-controls span:hover {
+  color: #0086ba;
+}
+
+/* Quick Access Section */
+.quick-access {
+  padding: 4rem 1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.quick-access h2 {
+  color: #00a8e8;
+  margin-bottom: 2rem;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.access-card {
+  background: #f8fdff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 168, 232, 0.15);
+  transition: transform 0.3s;
+}
+
+.access-card:hover {
+  transform: translateY(-5px);
+}
+
+.access-card i {
+  font-size: 2.5rem;
+  color: #00a8e8;
+  margin-bottom: 1rem;
+}
+
+.btn-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #00a8e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-link:hover {
+  color: #0086ba;
+}
+
+/* Gallery Section */
+.gallery {
+  background-color: #f9f9f9;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.gallery h2 {
+  color: #00a8e8;
+  margin-bottom: 2rem;
+}
+
+.gallery-slider {
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.gallery-track {
+  display: flex;
+  animation: scrollGallery 20s linear infinite;
+}
+
+.gallery-track img {
+  width: 320px;
+  height: 256px; /* 5:4 ratio */
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 15px;
+}
+
+@keyframes scrollGallery {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Reviews Section */
+.reviews {
+  padding: 4rem 1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.reviews h2 {
+  color: #00a8e8;
+  margin-bottom: 2rem;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.review-card {
+  background: #f8fdff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 3px 10px rgba(0,168,232,0.15);
+  font-style: italic;
+}
+
+.review-card h4 {
+  color: #333;
+  margin-top: 1rem;
+  font-style: normal;
+}
+
+/* ---- Hero CTA Buttons (View Programs / Find a Class) Latest changes only to the buttons ---- */
+:root{
+  --btn-blue: #0B66C3;
+  --btn-blue-hover: #0953A1;
+  --btn-ring: #9bd4ff;
+}
+
+.hero-cta .btn{
+  display:inline-block;
+  font-weight:700;
+  letter-spacing:.2px;
+  padding:1rem 1.25rem;
+  border-radius:14px;
+  border:2px solid transparent;
+  text-decoration:none;
+  line-height:1;
+  transform:translateZ(0);
+  transition:
+    transform .08s ease,
+    box-shadow .2s ease,
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+/* Primary: "View Programs" */
+.hero-cta .btn-primary{
+  color:#fff;
+  background: linear-gradient(180deg, var(--btn-blue) 0%, #0a5db0 100%);
+  box-shadow: 0 10px 20px rgba(11,102,195,.22), 0 2px 6px rgba(11,102,195,.18) inset;
+}
+.hero-cta .btn-primary:hover{
+  background: linear-gradient(180deg, var(--btn-blue-hover) 0%, #084e8f 100%);
+}
+.hero-cta .btn-primary:active{
+  transform: translateY(1px);
+  box-shadow: 0 6px 14px rgba(11,102,195,.22) inset;
+}
+
+/* Secondary: "Find a Class" */
+.hero-cta .btn-outline{
+  background:#fff;
+  color: var(--btn-blue);
+  border-color: var(--btn-blue);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+.hero-cta .btn-outline:hover{
+  background: #f3f9ff;
+  color: var(--btn-blue-hover);
+  border-color: var(--btn-blue-hover);
+}
+.hero-cta .btn-outline:active{
+  transform: translateY(1px);
+}
+
+/* Focus state for accessibility */
+.hero-cta .btn:focus-visible{
+  outline: 3px solid var(--btn-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(155,212,255,.45);
+}
+
+/* Nice spacing between the two buttons */
+.hero-cta{
+  display:flex;
+  gap:.85rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
