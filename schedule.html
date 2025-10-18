@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Splash Swimming Pool – Schedule</title>
+
+  <!-- Your site styles -->
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Minimal, scoped styles for the calendar layout -->
+  <style>
+    :root{
+      --brand:#0a6cf1;
+      --ink:#222;
+      --muted:#667085;
+      --bg:#f7f9fc;
+      --line:#e5e7eb;
+      --ok:#0ea5e9;
+      --warn:#eab308;
+      --full:#ef4444;
+      --chip:#eef2ff;
+      --card:#ffffff;
+      --radius:14px;
+    }
+    body#schedule main { background: var(--bg); }
+
+    /* Page header */
+    .page-heading{
+      padding: 48px 0 16px;
+      text-align: center;
+    }
+    .page-heading h1{ margin:0 0 8px; font-size: clamp(28px, 3vw, 40px); }
+    .page-heading p{ color: var(--muted); margin:0; }
+
+    /* Controls */
+    .calendar-controls{
+      display:flex; gap:12px; align-items:center; justify-content:center;
+      padding: 16px 12px 24px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
+      background:#fff; cursor:pointer; font-weight:600;
+    }
+    .btn[disabled]{ opacity:.4; cursor:not-allowed; }
+    .btn-primary{ background: var(--brand); color:#fff; border-color: var(--brand); }
+    .month-pills{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .pill{
+      padding:8px 12px; border-radius:999px; border:1px solid var(--line); background:#fff;
+      cursor:pointer; font-weight:600; color:var(--muted);
+    }
+    .pill.active{ background:var(--chip); color:var(--ink); border-color:#c7d2fe; }
+
+    /* Legend */
+    .legend{ display:flex; gap:18px; justify-content:center; color:var(--muted); margin-bottom: 10px; }
+    .legend i{ margin-right:6px; }
+
+    /* Calendar */
+    .calendar-wrap{
+      max-width: 1100px; margin: 0 auto 56px; padding: 0 16px 32px;
+    }
+    .calendar{
+      background:var(--card); border-radius: var(--radius); border:1px solid var(--line);
+      overflow:hidden; box-shadow: 0 6px 20px rgba(0,0,0,.04);
+    }
+    .calendar-head, .calendar-grid{
+      display:grid; grid-template-columns: repeat(7, 1fr);
+    }
+    .calendar-head{
+      background:#fff; border-bottom:1px solid var(--line);
+    }
+    .calendar-head div{
+      padding:12px; text-align:center; font-weight:700; color:var(--muted); text-transform:uppercase; font-size:12px; letter-spacing:.06em;
+    }
+    .calendar-grid{
+      background:#fff;
+    }
+    .day{
+      min-height:140px; border-top:1px solid var(--line); border-right:1px solid var(--line);
+      padding:10px; display:flex; flex-direction:column; gap:8px;
+    }
+    .day:nth-child(7n){ border-right:none; }
+    .day .date{
+      display:flex; align-items:center; justify-content:space-between; font-weight:700;
+    }
+    .date .today-badge{
+      font-size:11px; padding:4px 8px; border-radius:999px; background:var(--chip);
+      border:1px solid #c7d2fe; color:#4338ca;
+    }
+    .slots{
+      display:flex; flex-direction:column; gap:6px; margin-top:auto;
+    }
+    .slot{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:6px 8px; border:1px solid var(--line); border-radius:10px;
+      font-size:12px; gap:10px; background:#fff;
+    }
+    .slot .left{ display:flex; flex-direction:column; line-height:1.15; }
+    .time{ font-weight:700; }
+    .class{ color:var(--muted); font-size:11px; }
+    .badge{
+      font-size:11px; border-radius:999px; padding:4px 8px; white-space:nowrap; font-weight:700;
+      border:1px solid var(--line); background:#fafafa; color:var(--muted);
+    }
+    .badge.ok{ background:#ecfeff; border-color:#bae6fd; color:#0369a1; }
+    .badge.low{ background:#fff7ed; border-color:#fde68a; color:#b45309; }
+    .badge.full{ background:#fee2e2; border-color:#fecaca; color:#991b1b; }
+
+    /* Empty/disabled days */
+    .day.is-out{ background:#fafafa; color:#94a3b8; }
+    .day.is-out .slot{ opacity:.6; }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .day{ min-height:160px; }
+      .slot{ font-size:11px; }
+    }
+    @media (max-width: 720px){
+      .calendar-head div{ font-size:11px; }
+      .day{ min-height:180px; }
+    }
+  </style>
+</head>
+
+<body id="schedule">
+<div id="container">
+
+  <!-- ========== Header (matches your site) ========== -->
+  <header>
+    <div class="container">
+      <nav class="main-nav">
+        <div class="logo">
+          <a href="index.html"><img src="images/Logo.png" alt="Splash Swimming Pool Logo" id="logo"/></a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a class="active" href="schedule.html">Schedule</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="mobile-menu" aria-label="Open menu"><i class="fas fa-bars"></i></div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== Main ========== -->
+  <main>
+    <section class="page-heading">
+      <div class="container">
+        <h1>Class Schedule</h1>
+        <p>Browse the current month and the next 3 months. Spots update in real time.</p>
+      </div>
+    </section>
+
+    <section class="calendar-controls">
+      <button id="prevBtn" class="btn" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i>Prev</button>
+      <div id="monthLabel" class="btn btn-primary" aria-live="polite"></div>
+      <button id="nextBtn" class="btn" aria-label="Next month">Next<i class="fa-solid fa-chevron-right"></i></button>
+
+      <div class="month-pills" id="monthPills" aria-label="Jump to month"></div>
+    </section>
+
+    <div class="legend">
+      <span><i class="fa-solid fa-circle-check"></i> Good availability</span>
+      <span><i class="fa-solid fa-circle-exclamation"></i> 3 or fewer spots</span>
+      <span><i class="fa-solid fa-circle-xmark"></i> Full</span>
+    </div>
+
+    <section class="calendar-wrap">
+      <div class="calendar">
+        <div class="calendar-head">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+        <div id="calendarGrid" class="calendar-grid" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Contact Info</h3>
+          <p>Email: info@splashswimming.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Splash Swimming Pool. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Optional: your site JS -->
+<script src="js/main.js"></script>
+
+<!-- Schedule logic (vanilla JS) -->
+<script>
+(() => {
+  /**
+   * Weekly template: which classes run on which day-of-week.
+   * JS getDay(): 0=Sun ... 6=Sat
+   */
+  const weeklySchedule = {
+    1: [ // Monday
+      { time: '9:00 AM',  class: 'Beginner Kids', capacity: 4 },
+      { time: '5:00 PM',  class: 'Intermediate Kids', capacity: 4 },
+      { time: '6:00 PM',  class: 'Adult Learn-to-Swim', capacity: 6 },
+    ],
+    2: [ // Tuesday
+      { time: '10:00 AM', class: 'Parent & Tot', capacity: 6 },
+      { time: '4:00 PM',  class: 'Beginner Kids', capacity: 4 },
+      { time: '6:00 PM',  class: 'Stroke Clinic', capacity: 5 },
+    ],
+    3: [ // Wednesday
+      { time: '9:00 AM',  class: 'Beginner Kids', capacity: 4 },
+      { time: '5:00 PM',  class: 'Intermediate Kids', capacity: 4 },
+      { time: '6:00 PM',  class: 'Teen Fitness Swim', capacity: 8 },
+    ],
+    4: [ // Thursday
+      { time: '10:00 AM', class: 'Parent & Tot', capacity: 6 },
+      { time: '4:30 PM',  class: 'Advanced Kids', capacity: 4 },
+    ],
+    5: [ // Friday
+      { time: '5:00 PM',  class: 'Beginner Kids', capacity: 4 },
+      { time: '6:00 PM',  class: 'Adult Learn-to-Swim', capacity: 6 },
+    ],
+    6: [ // Saturday
+      { time: '9:00 AM',  class: 'Beginner Kids', capacity: 6 },
+      { time: '10:00 AM', class: 'Intermediate Kids', capacity: 6 },
+      { time: '11:00 AM', class: 'Stroke Clinic', capacity: 8 },
+    ],
+    // Sunday by design: no classes (or add yours under key 0)
+  };
+
+  /**
+   * Deterministic “spots left” calculator (so the UI looks real but stable).
+   * Mixes date + time + class name into a tiny hash and maps it to 0..capacity.
+   */
+  function spotsLeftFor(date, slot){
+    const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}|${slot.time}|${slot.class}`;
+    let h = 0;
+    for (let i=0; i<key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+    const used = h % (slot.capacity + 1); // 0..capacity
+    return slot.capacity - used;
+  }
+
+  function badgeLabel(spots){
+    if (spots <= 0) return 'Full';
+    if (spots <= 3) return `${spots} spot${spots===1?'':'s'} left`;
+    return 'Available';
+  }
+
+  function badgeClass(spots){
+    if (spots <= 0) return 'badge full';
+    if (spots <= 3) return 'badge low';
+    return 'badge ok';
+  }
+
+  // Calendar state: current month index relative to "now" (0..3 only)
+  const maxOffset = 3;
+  let offset = 0;
+
+  // DOM elements
+  const monthLabel = document.getElementById('monthLabel');
+  const grid = document.getElementById('calendarGrid');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const monthPills = document.getElementById('monthPills');
+
+  // Build the “current + 3” pills
+  const base = new Date();
+  const monthOptions = [];
+  for (let i=0; i<=maxOffset; i++){
+    const d = new Date(base.getFullYear(), base.getMonth()+i, 1);
+    monthOptions.push({ label: d.toLocaleString(undefined,{ month:'long', year:'numeric'}), i });
+  }
+  monthOptions.forEach(({label, i})=>{
+    const b = document.createElement('button');
+    b.className = 'pill' + (i===0 ? ' active' : '');
+    b.textContent = label;
+    b.addEventListener('click', () => { offset = i; render(); });
+    monthPills.appendChild(b);
+  });
+
+  // Render calendar for the current offset
+  function render(){
+    // update prev/next availability
+    prevBtn.disabled = offset <= 0;
+    nextBtn.disabled = offset >= maxOffset;
+
+    // set active pill
+    [...monthPills.children].forEach((el, idx)=> el.classList.toggle('active', idx===offset));
+
+    // compute month to show
+    const now = new Date();
+    const first = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+    const monthName = first.toLocaleString(undefined,{ month:'long', year:'numeric' });
+    monthLabel.textContent = monthName;
+
+    // clear grid
+    grid.innerHTML = '';
+
+    // figure out how many leading blanks (from previous month)
+    const startDay = first.getDay(); // 0..6
+    const last = new Date(first.getFullYear(), first.getMonth()+1, 0);
+    const totalDays = last.getDate();
+
+    // build 42 cells (6 weeks) for consistent grid
+    const cells = [];
+    // previous month tail
+    const prevLast = new Date(first.getFullYear(), first.getMonth(), 0).getDate();
+    for (let i = startDay-1; i >= 0; i--){
+      cells.push({ day: prevLast - i, isOut: true, date: new Date(first.getFullYear(), first.getMonth()-1, prevLast - i) });
+    }
+    // current month
+    for (let d = 1; d <= totalDays; d++){
+      cells.push({ day: d, isOut: false, date: new Date(first.getFullYear(), first.getMonth(), d) });
+    }
+    // next month head
+    while (cells.length % 7 !== 0) {
+      const d = cells.length - (startDay + totalDays) + 1;
+      cells.push({ day: d, isOut: true, date: new Date(first.getFullYear(), first.getMonth()+1, d) });
+    }
+    while (cells.length < 42){
+      const nextIndex = cells.length - (startDay + totalDays) + 1;
+      cells.push({ day: nextIndex, isOut: true, date: new Date(first.getFullYear(), first.getMonth()+1, nextIndex) });
+    }
+
+    // today detection
+    const todayKey = new Date().toDateString();
+
+    // paint cells
+    const frag = document.createDocumentFragment();
+    cells.forEach(({day, isOut, date})=>{
+      const cell = document.createElement('div');
+      cell.className = 'day' + (isOut ? ' is-out' : '');
+
+      const dateRow = document.createElement('div');
+      dateRow.className = 'date';
+      const strong = document.createElement('strong');
+      strong.textContent = day;
+      dateRow.appendChild(strong);
+
+      if (!isOut && date.toDateString() === todayKey && offset === 0){
+        const tb = document.createElement('span');
+        tb.className = 'today-badge';
+        tb.textContent = 'Today';
+        dateRow.appendChild(tb);
+      }
+      cell.appendChild(dateRow);
+
+      // slots for this day-of-week according to template
+      const dow = date.getDay();
+      const template = weeklySchedule[dow] || [];
+      const slotsWrap = document.createElement('div');
+      slotsWrap.className = 'slots';
+
+      template.forEach(slot => {
+        const spots = spotsLeftFor(date, slot);
+
+        const row = document.createElement('div');
+        row.className = 'slot';
+        const left = document.createElement('div');
+        left.className = 'left';
+
+        const t = document.createElement('span');
+        t.className = 'time';
+        t.textContent = slot.time;
+        const c = document.createElement('span');
+        c.className = 'class';
+        c.textContent = slot.class;
+
+        left.appendChild(t);
+        left.appendChild(c);
+
+        const b = document.createElement('span');
+        b.className = badgeClass(spots) + ' badge';
+        b.textContent = badgeLabel(spots);
+
+        row.appendChild(left);
+        row.appendChild(b);
+        slotsWrap.appendChild(row);
+      });
+
+      cell.appendChild(slotsWrap);
+      frag.appendChild(cell);
+    });
+    grid.appendChild(frag);
+  }
+
+  // Prev/Next controls (bounded to current .. +3 months)
+  prevBtn.addEventListener('click', () => { if (offset > 0) { offset--; render(); } });
+  nextBtn.addEventListener('click', () => { if (offset < maxOffset) { offset++; render(); } });
+
+  render();
+})();
+</script>
+</body>
+</html>
