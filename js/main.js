@@ -40,12 +40,12 @@ $(document).ready(function() {
         }
     });
 
-    // Form validation for contact form (if exists)
+    // Form validation and Ajax submit for contact form (if exists)
     $('#contact-form').on('submit', function(e) {
         e.preventDefault();
         var isValid = true;
-        
-        $(this).find('input[required], textarea[required]').each(function() {
+        var $form = $(this);
+        $form.find('input[required], textarea[required]').each(function() {
             if (!$(this).val()) {
                 isValid = false;
                 $(this).addClass('error');
@@ -53,10 +53,24 @@ $(document).ready(function() {
                 $(this).removeClass('error');
             }
         });
-
         if (isValid) {
-            // Add your form submission logic here
-            console.log('Form is valid, ready to submit');
+            // Simulate Ajax submission
+            $.ajax({
+                url: $form.attr('action'),
+                method: $form.attr('method'),
+                data: $form.serialize(),
+                success: function() {
+                    $('<div class="alert alert-success mt-3">Thank you! Your message has been sent.</div>')
+                        .insertAfter($form)
+                        .delay(4000).fadeOut();
+                    $form[0].reset();
+                },
+                error: function() {
+                    $('<div class="alert alert-danger mt-3">Sorry, there was a problem sending your message.</div>')
+                        .insertAfter($form)
+                        .delay(4000).fadeOut();
+                }
+            });
         }
     });
 

@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Splash Swimming Pool – About Us</title>
+  <title>Splash Swimming Pool | About Us</title>
 
   <!-- Styles -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
-
   <!-- Icons -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
 
 <body id="about">
@@ -105,37 +104,104 @@
         </div>
       </section>
 
-      <!-- Curriculum Snapshot -->
-      <section class="curriculum">
-        <div class="container">
-          <h2>Our Curriculum</h2>
-          <p class="section-intro">
-            We teach clear progressions—water comfort, breath control, propulsion, and stroke
-            fundamentals—so each skill builds on the last.
-          </p>
-          <div class="card-row">
-            <div class="mini-card">
-              <h4>Water Safety</h4>
-              <p>Back floats, safe entries/exits, roll-to-breath.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Beginner</h4>
-              <p>Face in water, kick &amp; glide, assisted streamline.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Intermediate</h4>
-              <p>Unassisted floats, side breathing, freestyle basics.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Advanced</h4>
-              <p>Refined freestyle/backstroke, intro to breast &amp; fly.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+<!-- Curriculum Snapshot -->
+<section class="curriculum">
+  <div class="container">
+    <h2>Our Curriculum</h2>
+    <p class="section-intro">
+      Clear progressions from water comfort to polished strokes. Explore what each level covers.
+    </p>
+
+    <div class="curriculum-matrix-wrap" role="region" aria-label="Curriculum matrix">
+      <table class="curriculum-matrix">
+        <caption class="sr-only">Curriculum skill coverage by level</caption>
+        <thead>
+          <tr>
+            <th scope="col">Skill Focus</th>
+            <th scope="col">Water Safety</th>
+            <th scope="col">Beginner</th>
+            <th scope="col">Intermediate</th>
+            <th scope="col">Advanced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Water Safety &amp; Entries</th>
+            <td class="yes"><i class="fas fa-check" aria-hidden="true"></i><span>Core</span></td>
+            <td class="yes"><i class="fas fa-check" aria-hidden="true"></i></td>
+            <td class="dot">•</td>
+            <td class="dot">•</td>
+          </tr>
+          <tr>
+            <th scope="row">Comfort &amp; Body Position</th>
+            <td class="yes"><i class="fas fa-check"></i></td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+            <td class="dot">•</td>
+            <td class="dot">•</td>
+          </tr>
+          <tr>
+            <th scope="row">Breath Control</th>
+            <td class="yes"><i class="fas fa-check"></i></td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+            <td class="dot">•</td>
+          </tr>
+          <tr>
+            <th scope="row">Kick, Glide &amp; Streamline</th>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Freestyle Basics</th>
+            <td class="dash">—</td>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Backstroke Basics</th>
+            <td class="dash">—</td>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Breaststroke Intro</th>
+            <td class="dash">—</td>
+            <td class="dash">—</td>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Butterfly Intro</th>
+            <td class="dash">—</td>
+            <td class="dash">—</td>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Endurance &amp; Turns</th>
+            <td class="dash">—</td>
+            <td class="dash">—</td>
+            <td class="dot">•</td>
+            <td class="yes"><i class="fas fa-check"></i><span>Core</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><i class="fas fa-check"></i> Covered</span>
+      <span>• Reinforced</span>
+      <span>— Not in focus</span>
+    </div>
+  </div>
+</section>
 
       <!-- Instructors -->
-<section class="team">
+   <section class="team">
   <div class="container">
     <h2>Meet Our Instructors</h2>
     <div class="team-grid">

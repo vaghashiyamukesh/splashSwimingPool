@@ -337,7 +337,7 @@ footer {
 /* For high resolution displays */
 @media screen and (min-resolution: 192dpi) {
     .hero {
-        background-image: url('Assets/hero-bg@2x.jpg');
+        background-image: url('images/swimming4.jpg');
     }
 }
 
@@ -937,4 +937,108 @@ textarea {
   gap:.85rem;
   flex-wrap:wrap;
   justify-content:center;
+}
+
+/* ===== Curriculum Matrix ===== */
+.curriculum .section-intro{
+  max-width: 60ch;
+  margin: 0 auto 1rem auto;
+  text-align: center;
+}
+
+.curriculum-matrix-wrap{
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+  overflow: auto; /* horizontal scroll on small screens */
+}
+
+.curriculum-matrix{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 720px; /* keeps columns readable */
+  font-size: 0.95rem;
+}
+
+.curriculum-matrix thead th{
+  position: sticky;
+  top: 0;
+  background: #f7fbff;
+  color: var(--blue-800, #073E78);
+  text-align: left;
+  font-weight: 700;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.curriculum-matrix tbody th{
+  background: #fafafa;
+  font-weight: 600;
+  color: var(--text, #0f2d48);
+  padding: 0.85rem 1rem;
+  border-right: 1px solid rgba(0,0,0,.06);
+}
+
+.curriculum-matrix td{
+  text-align: center;
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.curriculum-matrix tbody tr:nth-child(even) td{
+  background: #fcfeff;
+}
+.curriculum-matrix tbody tr:nth-child(odd) td{
+  background: #ffffff;
+}
+
+/* status cells */
+.curriculum-matrix td.yes{
+  color: #0B66C3; /* bright blue */
+  font-weight: 700;
+}
+.curriculum-matrix td.yes i{
+  margin-right: .35rem;
+}
+.curriculum-matrix td.yes span{
+  display: inline-block;
+  font-weight: 700;
+  color: #0953A1;
+  font-size: .9rem;
+}
+.curriculum-matrix td.dot{
+  color: #64748b; /* muted slate */
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.curriculum-matrix td.dash{
+  color: #c0c7d1;
+}
+
+/* rounded corners for the shell */
+.curriculum-matrix thead th:first-child{
+  border-top-left-radius: 14px;
+}
+.curriculum-matrix thead th:last-child{
+  border-top-right-radius: 14px;
+}
+
+/* legend */
+.legend{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  align-items:center;
+  margin-top: .85rem;
+  color: #475569;
+  font-size: .95rem;
+}
+.legend i{ margin-right: .35rem; color:#0B66C3; }
+
+/* small screens */
+@media (max-width: 640px){
+  .curriculum .section-intro{ text-align:left; margin-left:0; margin-right:0; }
 }

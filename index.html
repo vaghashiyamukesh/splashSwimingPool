@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Splash Swimming Pool - Kids Swimming Classes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,6 +34,15 @@
     </header>
 
     <main>
+        <!-- ============================
+             VUE TESTIMONIAL COMPONENT
+        ============================= -->
+        <section class="vue-testimonial-section">
+            <div class="container">
+                <h2>What Our Swimmers Say</h2>
+                <div id="vue-testimonial"></div>
+            </div>
+        </section>
         <!-- ============================
              FEATURED CLASSES SLIDER
         ============================= -->
@@ -197,5 +207,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    <!-- Vue.js for testimonial component -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="js/vue-testimonial.js"></script>
 </body>
 </html>
